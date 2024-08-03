@@ -50,9 +50,13 @@ class Connection
      */
     public function openSocket(): void
     {
+        if (is_resource($this->socket)) {
+            return;
+        }
+
         set_error_handler(function () {}); // Suppress warnings
 
-        $this->socket = @fsockopen(
+        $this->socket = fsockopen(
             $this->getUri(),
             $this->getPort(),
             $errorCode,
