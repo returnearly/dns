@@ -3,6 +3,7 @@
 declare(strict_types=1);
 
 use ReturnEarly\Dns\Connection;
+use ReturnEarly\Dns\Exceptions\ConnectionException;
 
 it('can set the connection details', function () {
     $connection = new Connection(
@@ -44,3 +45,18 @@ it('can connect to a public dns resolver', function (bool $useUdp) {
     true,
     false,
 ])->group('external-connection');
+
+it('cannot connect to a nonexistant server and throws', function () {
+    $this->expectException(ConnectionException::class);
+
+    $connection = new Connection(
+        host: '127.0.0.1',
+        port: 9876,
+        timeout: 1,
+        udp: false,
+    );
+
+    $connection->openSocket();
+
+    expect($connection->getSocket())->toBeFalse();
+});
