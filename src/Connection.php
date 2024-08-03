@@ -62,11 +62,7 @@ class Connection
 
         restore_error_handler(); // Restore warnings
 
-        if ($this->socket === false) {
-            throw new ConnectionException($errorMessage, $errorCode);
-        }
-
-        if ($errorCode !== 0) {
+        if ($this->socket === false || $errorCode !== 0) {
             throw new ConnectionException($errorMessage, $errorCode);
         }
 
