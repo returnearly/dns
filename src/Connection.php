@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace ReturnEarly\Dns;
 
-use RuntimeException;
+use ReturnEarly\Dns\Exceptions\ConnectionException;
 
 class Connection
 {
@@ -50,7 +50,9 @@ class Connection
      */
     public function openSocket(): void
     {
-        $this->socket = fsockopen(
+        set_error_handler(function () {}); // Suppress warnings
+
+        $this->socket = @fsockopen(
             $this->getUri(),
             $this->getPort(),
             $errorCode,
@@ -58,8 +60,10 @@ class Connection
             $this->getTimeout(),
         );
 
-        if ($this->socket === false) {
-            throw new RuntimeException($errorMessage, $errorCode);
+        restore_error_handler(); // Restore warnings
+
+        if ($this->socket === false || $errorCode !== 0) {
+            throw new ConnectionException($errorMessage, $errorCode);
         }
 
         stream_set_timeout($this->socket, $this->getTimeout());
