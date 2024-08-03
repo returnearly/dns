@@ -8,7 +8,7 @@ use Badcow\DNS\Message;
 
 class Query
 {
-    const int OPCODE_QUERY = 0;
+    public final const int OPCODE_QUERY = 0;
 
     public function __construct(
         private readonly Question $question,
