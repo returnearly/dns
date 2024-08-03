@@ -13,20 +13,24 @@ class Query
     public function __construct(
         private readonly Question $question,
         private readonly Connection $connection,
-        private $allowRecursion = true,
+        private readonly bool $allowRecursion = true,
+        private readonly int $tries = 1,
+        private readonly int $triesDelay = 100,
     ) {}
 
     public function execute(): Response
     {
-        $this->connection->openSocket();
+        return retry($this->tries, function (): Response {
+            $this->connection->openSocket();
 
-        $binaryData = $this->makeMessage()->toWire();
+            $binaryData = $this->makeMessage()->toWire();
 
-        fwrite($this->connection->getSocket(), $binaryData);
+            fwrite($this->connection->getSocket(), $binaryData);
 
-        $responseBuffer = fread($this->connection->getSocket(), 4096);
+            $responseBuffer = fread($this->connection->getSocket(), 4096);
 
-        return new Response($responseBuffer);
+            return new Response($responseBuffer);
+        }, sleepMilliseconds: $this->triesDelay);
     }
 
     private function makeMessage(): Message
