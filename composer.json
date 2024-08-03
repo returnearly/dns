@@ -15,7 +15,9 @@
         }
     ],
     "require": {
-        "php": "^8.3"
+        "php": "^8.3",
+        "badcow/dns": "^4.2",
+        "returnearly/laravel-enums": "^1.0"
     },
     "require-dev": {
         "pestphp/pest": "^2.20",
