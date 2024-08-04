@@ -114,5 +114,3 @@ it('wont throw if response code is good', function () {
     expect($response->isSuccessful())->toBeTrue();
     expect($response->throw())->toBe($response);
 });
-
-
