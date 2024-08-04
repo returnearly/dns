@@ -8,12 +8,12 @@ use Badcow\DNS\Question as BadcowQuestion;
 use ReturnEarly\Dns\Enums\ClassEnum;
 use ReturnEarly\Dns\Enums\TypeEnum;
 
-class Question
+readonly class Question
 {
     public function __construct(
-        private readonly string $name,
-        private readonly TypeEnum $type,
-        private readonly ClassEnum $class = ClassEnum::INTERNET,
+        private string $name,
+        private TypeEnum $type,
+        private ClassEnum $class = ClassEnum::INTERNET,
     ) {}
 
     public function getName(): string

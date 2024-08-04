@@ -60,3 +60,20 @@ it('cannot connect to a nonexistant server and throws', function () {
 
     expect($connection->getSocket())->toBeFalse();
 });
+
+it('can reuse an existing socket', function () {
+    $connection = new Connection(
+        host: '1.1.1.1',
+        port: 53,
+        timeout: 5,
+        udp: true,
+    );
+
+    $connection->openSocket();
+
+    $socketId = get_resource_id($connection->getSocket());
+
+    $connection->openSocket();
+
+    expect(get_resource_id($connection->getSocket()))->toBe($socketId);
+});

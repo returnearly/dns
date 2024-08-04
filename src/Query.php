@@ -29,7 +29,7 @@ class Query
 
             $responseBuffer = fread($this->connection->getSocket(), 4096);
 
-            return new Response($responseBuffer);
+            return Response::fromBinaryBuffer($responseBuffer);
         }, sleepMilliseconds: $this->triesDelay);
     }
 
