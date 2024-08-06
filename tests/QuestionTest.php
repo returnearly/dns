@@ -32,3 +32,13 @@ it('can convert to a Badcow Question', function () {
     expect($badcowQuestion->getType())->toBe('A');
     expect($badcowQuestion->getClass())->toBe('IN');
 });
+
+it('can use subdomains correctly as a question', function () {
+    $question = new Question('_sip._tls.example.com', TypeEnum::SRV);
+
+    $badcowQuestion = $question->toBadcowQuestion();
+
+    expect($badcowQuestion->getName())->toBe('_sip._tls.example.com.');
+    expect($badcowQuestion->getType())->toBe('SRV');
+    expect($badcowQuestion->getClass())->toBe('IN');
+});
