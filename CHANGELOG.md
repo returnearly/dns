@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.0.2](https://github.com/returnearly/dns/compare/v1.0.1...v1.0.2) (2024-08-06)
+
+
+### Bug Fixes
+
+* override dns dependency for now ([#11](https://github.com/returnearly/dns/issues/11)) ([4462f57](https://github.com/returnearly/dns/commit/4462f5773c0f4ef1055047b35eff8a6cb3eded63))
+
 ## [v1.0.1](https://github.com/returnearly/dns/compare/v1.0.1...v1.0.1) - 2024-08-04
 
 ### [1.0.1](https://github.com/returnearly/dns/compare/v1.0.0...v1.0.1) (2024-08-04)
