@@ -32,6 +32,8 @@ jobs:
           php-version: ${{ matrix.php }}
           extensions: intl, gmp
           coverage: pcov
+        env:
+          COMPOSER_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Setup problem matchers
         run: |
