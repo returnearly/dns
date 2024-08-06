@@ -14,15 +14,9 @@
             "role": "Developer"
         }
     ],
-    "repositories": [
-        {
-            "type": "vcs",
-            "url": "https://github.com/tomschlick/DNS"
-        }
-    ],
     "require": {
         "php": "^8.3",
-        "badcow/dns": "dev-master as 4.2.1",
+        "badcow/dns": "^4.3",
         "illuminate/support": ">=10.0",
         "returnearly/laravel-enums": "^1.0"
     },
