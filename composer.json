@@ -18,7 +18,7 @@
         "php": "^8.3",
         "badcow/dns": "^4.3",
         "illuminate/support": ">=10.0",
-        "returnearly/laravel-enums": "^1.0"
+        "returnearly/laravel-enums": "^2.0"
     },
     "require-dev": {
         "pestphp/pest": "^2.20",
